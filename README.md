@@ -1,69 +1,44 @@
-🌐 Skill Sharing Platform
+# 🌐 Skill Sharing Platform  
 
-This project is a Skill Sharing Platform built using Node.js, Express.js, Firebase Firestore, EJS templates, and Sessions.
-It provides user roles (User, Tutor, Admin) with features like Login, Signup, Profile Management, Dashboards, Chatbot, Notifications, and more.
+This project is a **Skill Sharing Platform** built using **Node.js, Express.js, Firebase Firestore, EJS templates, and Sessions**.  
+It provides different user roles (**User, Tutor, Admin**) with features like **Login, Signup, Profile Management, Dashboards, Notifications, and more**.  
 
-🚀 Features
+---
 
-🔑 Authentication & Authorization
+## 🚀 Features  
 
-Signup and Login with password encryption (bcrypt).
+- 🔑 **Authentication & Authorization** (bcrypt + express-session)  
+- 👨‍💻 **User Portal**: Chatbot, Code Generator, Language Converter, Learning Paths, Forum  
+- 📊 **Tutor Dashboard**: Manage skills, bookings, sessions  
+- 🛠 **Admin Panel**: Manage users, tutors, skills  
+- 📖 **Blog & Landing Page**  
+- 🔔 **Notifications**: User-specific updates  
 
-Session-based authentication.
+---
 
-👨‍💻 User Portal
+## 🏗 Project Structure  
 
-Interactive Chatbot
-
-YouTube Video Generator
-
-Code Generator
-
-Language Converter
-
-Live Chat
-
-Personalized Learning Paths
-
-Community Forum
-
-Profile & Notifications
-
-📊 Tutor Dashboard
-
-Manage skills, bookings, and learning sessions.
-
-🛠 Admin Panel
-
-Manage users, tutors, skills, and analytics.
-
-📖 Blog & Landing Page
-
-🏗 Project Structure
+```plaintext
 project/
-│── views/                # EJS templates (login, signup, dashboards, portal, etc.)
+│── views/                # EJS templates
 │── public/               # Static files (CSS, JS, images)
-│── server.js             # Main Express server file
-│── package.json          # Dependencies & project info
+│── server.js             # Main Express server
+│── package.json          # Dependencies
 │── .env                  # Environment variables
-│── README.md             # Project documentation
+│── README.md             # Documentation
+
+
 
 ⚙️ Tech Stack
-
-Backend: Node.js, Express.js
-
-Database: Firebase Firestore
-
-Authentication: bcrypt + express-session
-
-Templating: EJS
-
-Deployment Ready: Configurable with .env
+Backend     : Node.js, Express.js  
+Database    : Firebase Firestore  
+Auth        : bcrypt + express-session  
+Templating  : EJS  
 
 🔧 Setup & Installation
 1️⃣ Clone the repository
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/upendra042/skillshare.git
+cd skillshare
 
 2️⃣ Install dependencies
 npm install
@@ -72,16 +47,13 @@ npm install
 
 Go to Firebase Console
 
-Create a new project
+Create a new project and Firestore DB
 
 Download service account key JSON
 
-Add it inside your project (replace in server.js)
+Update server.js with your credentials
 
-4️⃣ Environment Variables
-
-Create a .env file in the root:
-
+4️⃣ Create .env file
 PORT=3002
 SESSION_SECRET=your-secret-key
 
@@ -89,34 +61,17 @@ SESSION_SECRET=your-secret-key
 node server.js
 
 
-Visit 👉 http://localhost:3002
+Now open 👉 http://localhost:3002
 
-📌 Workflows
-
-User Authentication
-
-Users can sign up with details (name, email, password, etc.).
-
-Passwords are stored securely with bcrypt.
-
-Login verifies password and creates a session.
-
-Role-Based Dashboards
-
-User → Access user portal & learning features.
-
-Tutor → Manage teaching sessions.
-
-Admin → Access admin panel with full control.
-
-Session Management
-
-express-session maintains logged-in state.
-
-Auto redirects users to login if session is missing.
-
-Notifications
-
-Each user has notifications stored in Firestore.
-
-Notifications are shown in the portal.
+📌 Workflow
+flowchart TD
+    A[User Signup/Login] --> B{Firestore Verification}
+    B -->|Valid User| C[Session Created]
+    B -->|Invalid| D[Error: User not found]
+    C --> E[Role Check]
+    E -->|User| F[User Portal]
+    E -->|Tutor| G[Tutor Dashboard]
+    E -->|Admin| H[Admin Panel]
+    F --> I[Notifications + Features]
+    G --> I
+    H --> I
